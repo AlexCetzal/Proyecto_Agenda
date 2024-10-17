@@ -1,0 +1,61 @@
+.img-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px; /* Espacio entre la imagen y el formulario */
+}
+
+.img_modelo {
+    max-width: 100%;
+    height: auto;
+}
+.cdb {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    margin-bottom: 2rem;
+}
+
+label {
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    text-align: center; 
+}
+
+.form-control {
+    width: 30vh; 
+    max-width: 300px;
+}
+
+.whitout-padding-left {
+    padding-left: 0;
+}
+.btn-container{
+    padding-left: 0;
+}
+.btn-lar {
+    width: 30vh;
+}
+.register-container{
+    margin-top: 3vh;
+}
+
+.register-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+    width: 100%;
+    color: #007bff; 
+    text-decoration: none; 
+}
+
+.register-link:before,
+.register-link:after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #ccc; 
+    margin: 0 10px; 
+}
+

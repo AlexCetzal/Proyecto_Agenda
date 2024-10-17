@@ -1,0 +1,159 @@
+.container-menu {
+    .padre{
+        display: flex;
+        flex-direction: row;
+    }
+
+    * {
+        font-size: Roboto;
+    }
+
+    .img-logo {
+        height: 70px;
+        width: 215px;
+    }
+
+    .menu-title {
+        text-align: center;
+        justify-content: center;
+    }
+
+    .contenedor-h1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 30px;
+        margin: 20px;
+    }
+
+    .menu_izquierda {
+        display: flex;
+        flex-direction: column;
+        /* Coloca los elementos en una columna */
+        align-items: flex-start;
+        /* Alinea los elementos al inicio del contenedor */
+        border-right: 1px solid #0f0f0f;
+        width: 220px;
+        height: 825px;
+        background-color: #f0f0f0;
+        /* Color de fondo */
+        padding: 10px;
+        border-right: 1px solid #0f0f0f;
+        box-shadow: 3px 0px 10px rgba(0, 0, 0, 0.3);
+        /* Sombra solo hacia la derecha */
+        border-radius: 5px;
+    }
+
+    .menu_izquierda a {
+        text-decoration: none;
+        /* Elimina el subrayado de los enlaces */
+        color: #333;
+        /* Color del texto */
+        padding: 10px 0;
+        /* Espacio alrededor de cada enlace */
+        width: 100%;
+        /* Hace que los enlaces ocupen todo el ancho del contenedor */
+        border-bottom: 1px solid #ddd;
+        /* Línea divisoria entre los elementos */
+        transition: background-color 0.3s ease;
+        /* Animación para hover */
+    }
+
+    .menu_izquierda ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        padding: 10px;
+        margin: 30px 0;
+    }
+
+    .menu_izquierda ul li {
+        margin-bottom: 25px;
+        /* Espacio entre los elementos del menú */
+    }
+
+    .menu_izquierda ul li a {
+        color: #0f0f0f;
+        text-decoration: none;
+        padding: 10px 15px;
+        display: block;
+        transition: background-color 0.3s, color 0.3s;
+    }
+    .menu_izquierda ul li a:hover {
+        background-color: #32b1d0;
+        color: #fff;
+        border-radius: 5px;
+    }
+
+    .menu_izquierda hr {
+        width: 90%;
+        border: 0;
+        border-top: 1px solid #0e0d0d;
+        margin: 20px auto;
+    }
+
+    .contenido {
+        flex-grow: 1;
+        padding: 20px;
+        background-color: #ffffff;
+    }
+
+    .fixed-text {
+        font-size: 30px;
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        color: #fff;
+        background-color: rgba(0, 0, 0, 0.1);
+        /* Fondo semi-transparente para contraste */
+        padding: 20px;
+        max-width: 500px;
+        z-index: 10;
+        /* Estilo para asegurarse de que el texto esté sobre los slides */
+    }
+
+    .fixed-text h1,
+    .fixed-text p {
+        margin: 0;
+
+    }
+
+    .fixed-text p {
+        margin-top: 10px;
+    }
+
+    #popup {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+        max-width: 300px;
+        text-align: center;
+    }
+
+    #popup button {
+        margin-top: 10px;
+        padding: 5px 10px;
+        background: #ff3333;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+    #popup button:hover {
+        background: #cc0000;
+    }
+
+    @media (max-width: 768px) {
+        header {
+            flex-direction: column;
+        }
+
+        nav ul {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        nav ul li {
+            margin: 10px 0;
+        }
+    }
+}

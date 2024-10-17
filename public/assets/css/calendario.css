@@ -1,0 +1,9 @@
+.padre{
+    max-width: 100%;
+    max-height: 100%;
+}
+.calendario{
+    padding: 30px ;
+    height: 85vh;
+    width: 160vh;
+}
