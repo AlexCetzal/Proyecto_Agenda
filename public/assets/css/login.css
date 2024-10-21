@@ -59,3 +59,12 @@ label {
     margin: 0 10px; 
 }
 
+.container-login {
+    margin: 13vh;
+}
+.nav-color{
+    background-color:  #f0f0f0;
+}
+.nav-derecha{
+    margin-left: 100%;
+}

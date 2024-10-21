@@ -38,8 +38,8 @@
                             </div>
                         </div>
 
-                        <div class="row mb-3 justify-content-center">
-                            <div class="col-md-6 d-flex justify-content-center align-items-center">
+                        <div class="row mb-3 cdb justify-content-center">
+                            <div class="col-md-3 d-flex justify-content-center align-items-center">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
                                     <label class="form-check-label ms-2" for="remember">
@@ -55,11 +55,15 @@
                         </div>
 
 
-                        <div class="row mb-3 justify-content-center">
-                            <div class="col-md-4 text-center whitout-padding-left">
+                        <div class="row mb-3 cdb justify-content-center">
+                            <div class="col-md-3 text-center whitout-padding-left">
                                 <button type="submit" class="btn btn-primary btn-lar">
                                     {{ __('Login') }}
                                 </button>
+                            </div>
+                        </div>
+                        <!-- <div class="row mb-3 cdb justify-content-center">
+                            <div class="col-md-4 text-center whitout-padding-left">
                                 @if (Route::has('register'))
                                 <ul style="list-style: none;" class="register-container whitout-padding-left">
                                     <li class="nav-item">
@@ -68,8 +72,7 @@
                                 </ul>
                                 @endif
                             </div>
-                        </div>
-
+                        </div> -->
                     </form>
                 </div>
             </div>

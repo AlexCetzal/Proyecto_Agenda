@@ -13,31 +13,31 @@
         var calendarEl = document.getElementById('calendar');
 
 
-        var section = "{{ $section ?? '' }}"; // Si no está definida, usa una cadena vacía
+        var section = "{{ $section ?? '' }}"; 
 
         var calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'dayGridMonth',
             locale: 'es',
-            events: '/events/list?section=' + section, // Pasar 'section' como parámetro
+            events: '/events/list?section=' + section,
             displayEventTime: false,
             dateClick: function(info) {
-                var date = new Date(info.dateStr + 'T00:00:00'); // Asegura que la fecha esté en UTC sin desfase de horas
-                var day = String(date.getUTCDate()).padStart(2, '0'); // Día en formato de dos dígitos
-                var month = String(date.getUTCMonth() + 1).padStart(2, '0'); // Mes en formato de dos dígitos
-                var year = date.getUTCFullYear(); // Año
+                var date = new Date(info.dateStr + 'T00:00:00');
+                var day = String(date.getUTCDate()).padStart(2, '0'); 
+                var month = String(date.getUTCMonth() + 1).padStart(2, '0');
+                var year = date.getUTCFullYear();
 
                 var selectedDate = day + '-' + month + '-' + year;
                 document.getElementById('startDate').value = selectedDate;
                 var endDatePicker = document.getElementById('endDate')._flatpickr;
                 if (endDatePicker) {
-                    endDatePicker.set('minDate', selectedDate); // Actualiza el minDate
+                    endDatePicker.set('minDate', selectedDate); 
                 } else {
                     // Inicializa flatpickr en #endDate si no existe
                     flatpickr("#endDate", {
                         dateFormat: "d-m-Y",
                         altInput: true,
-                        altFormat: "F j, Y", // Formato legible para el usuario
-                        minDate: selectedDate, // Establece la fecha mínima
+                        altFormat: "F j, Y", 
+                        minDate: selectedDate, 
                     });
                 }
                 var activityModal = new bootstrap.Modal(document.getElementById('activityModal'));

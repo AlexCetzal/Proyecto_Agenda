@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Events;
+use DateTime;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 
@@ -37,8 +38,11 @@ class EventController extends Controller
             'start' => 'required|date',
             'end' => 'nullable|date',
             'description' => 'nullable|string',
-            'section' => 'required|string', // Deja que la sección sea dinámica          
+            'section' => 'required|string',         
         ]);
+        $validated['start'] = (new DateTime($validated['start']))-> format('Y-m-d');
+        $validated['end'] = (new DateTime($validated['start']))-> format('Y-m-d');
+        
         if ($validated['section'] == 'centro_cultural') {
             $validated['tipo_evento'] = 1;
         }
