@@ -14,6 +14,7 @@
         <hr  style="border: 1px solid white;">
         <ul>
             <li> <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar sesión</a></li>
+            <li><a href="{{ route('configuracion') }}">Configuracion</a></li>
         </ul>
     </div>
     <main class=" der-nav">
