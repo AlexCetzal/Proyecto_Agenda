@@ -1,7 +1,7 @@
 <div class="padre">
 
     <div class=" menu_izquierda">
-    <img src="{{asset('assets/img/logo-modelo.png')}}" alt="example" class="img-logo">
+        <img src="{{asset('assets/img/logo-modelo.png')}}" alt="example" class="img-logo">
         <div class="contenedor-h1">
             <h1 class="menu-title">Menu</h1>
         </div>
@@ -11,14 +11,14 @@
             <li><a href="{{ route('campos_Modelo') }}">CamposModelo</a></li>
             <li><a href="{{ route('transporte') }}">Transporte</a></li>
         </ul>
-        <hr  style="border: 1px solid white;">
+        <hr style="border: 1px solid white;">
         <ul>
             <li> <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar sesión</a></li>
             <li><a href="{{ route('configuracion') }}">Configuracion</a></li>
         </ul>
     </div>
     <main class=" der-nav">
-    <nav class="navbar navbar-expand-md navbar-light  shadow-sm nav-color">
+        <nav class="navbar navbar-expand-md navbar-light  shadow-sm nav-color">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                 </a>

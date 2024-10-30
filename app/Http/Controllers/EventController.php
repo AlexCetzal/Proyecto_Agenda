@@ -16,12 +16,15 @@ class EventController extends Controller
 
     public function getEvents(Request $request)
     {
-        $section = $request->query('section');
+        $section = strtolower($request->query('section'));
         if ($section == 'centro_cultural') {
             $section = 1;
         }
         if ($section == 'campos_modelo') {
             $section = 2;
+        }
+        if ($section == 'actividades_modelo') {
+            $section = 3;
         }
 
         $events = Events::where('tipo_evento', $section)
@@ -58,15 +61,15 @@ class EventController extends Controller
             if ($existingEvent) {
                 return response()->json(['error' => 'Ya existe un evento en esta fecha y hora.'], 400);
             }
-
+            $validated['section'] = strtolower($validated['section']);
             if ($validated['section'] == 'centro_cultural') {
                 $validated['tipo_evento'] = 1;
-            }
-            if ($validated['section'] == 'campos_Modelo') {
+            } elseif ($validated['section'] == 'campos_modelo') {
                 $validated['tipo_evento'] = 2;
-            }
-            if ($validated['section'] == 'actividades_Modelo') {
+            } elseif ($validated['section'] == 'actividades_modelo') {
                 $validated['tipo_evento'] = 3;
+            } else {
+                return response()->json(['error' => 'Sección inválida.'], 400);
             }
 
             // Crear el evento utilizando los datos validados

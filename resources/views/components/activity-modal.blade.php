@@ -90,7 +90,7 @@
     $('#activityForm').on('submit', function(e) {
         e.preventDefault();
         console.log($(this));
-        
+
         $.ajax({
             url: '/events', // La ruta al controlador 'store'
             type: 'POST',
@@ -101,13 +101,18 @@
                 $('#activityModal').modal('hide');
                 setTimeout(function() {
                     location.reload();
-                    window.location.href = '/transporte'    //<= nueva ruta
                 }, 2000);
             },
             error: function(xhr) {
                 var errorToast = new bootstrap.Toast(document.getElementById('errorToast'));
                 errorToast.show();
-                console.log(xhr.responseText);
+                // console.log(xhr.responseText);
+                if (xhr.status === 400) {
+                    $('#errorToast .toast-body').text(xhr.responseJSON.error);
+                } else {
+                    $('#errorToast .toast-body').text('Ocurrió un error. Por favor, intenta de nuevo.');
+                }
+
 
             }
         });
