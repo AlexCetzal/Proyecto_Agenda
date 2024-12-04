@@ -11,6 +11,8 @@
     <title>{{ config('Modelo', 'Modelo') }}</title>
     <!-- Favicon -->
     <link class="logo_nav" rel="icon" href="{{ asset('assets/img/logo.jpeg') }}" type="image/png" sizes="32x32">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css" rel="stylesheet">
 
 
     <!-- Scripts -->
@@ -29,12 +31,13 @@
 
     <!-- Bootstrap JS Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('assets/css/login.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/config.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/calendario.css')}}">
 
 

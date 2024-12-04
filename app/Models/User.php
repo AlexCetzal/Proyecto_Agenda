@@ -41,4 +41,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function permisos()
+    {
+        return $this->hasMany(Permiso::class);
+    }
+
+
+    public function hasPermission($permission)
+    {
+        \Log::info('Permisos del usuario:', $this->permisos->pluck('nombre')->toArray());
+        return $this->permisos->contains('nombre', $permission);
+    }
 }

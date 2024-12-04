@@ -14,15 +14,9 @@
                         <input type="text" class="form-control" id="activityName" name="title" required>
                     </div>
                     <div class="mb-3">
-                        <label for="Vehiculos" class="form-label">Vehiculos</label>
-                        <select class="form-control" id="vehiculos" name="vehiculos">
-                            <option value="">Selecciona el tipo de transporte</option>
-                            <option value="Chevrolet_Malibu">Chevrolet malibu</option>
-                            <option value="Chevrolet_Suburban">Chevrolet Suburban</option>
-                            <option value="Dodger_Ram">Dodger Ram</option>
-                            <option value="Ford_Expedition">Ford Expedition</option>
-                            <option value="GMC_Terrain">GMC Terrain</option>
-                            <option value="Toyota_Sienna">Toyota Sienna</option>
+                        <label for="optiones" class="form-label">Selecionar datos</label>
+                        <select class="form-control" id="optiones" name="optiones">
+                            <option value="">Seleccionar</option>
                         </select>
                     </div>
                     <div class="mb-3">
@@ -54,20 +48,24 @@
 
 
 <div class="toast-container position-fixed bottom-0 end-0 p-3">
-    <div id="successToast" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+    <div id="successToast" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive"
+        aria-atomic="true">
         <div class="d-flex">
             <div class="toast-body">
                 Actividad guardada exitosamente.
             </div>
-            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                aria-label="Close"></button>
         </div>
     </div>
-    <div id="errorToast" class="toast align-items-center text-bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
+    <div id="errorToast" class="toast align-items-center text-bg-danger border-0" role="alert" aria-live="assertive"
+        aria-atomic="true">
         <div class="d-flex">
             <div class="toast-body">
                 Error al guardar la actividad.
             </div>
-            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                aria-label="Close"></button>
         </div>
     </div>
 </div>
@@ -81,40 +79,59 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-    // $.ajaxSetup({
-    //     headers: {
-    //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    //     }
-    // });
+// $.ajaxSetup({
+//     headers: {
+//         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+//     }
+// });
+var section = "{{ $section ?? '' }}";
+$.ajax({
+    url: '/actividades_Modelo/get?section=' + section,
+    type: 'GET',
+    success: function(response) {
+        console.log(response);
+        var select = document.getElementById('optiones');                
+                select.innerHTML = '<option value="">Selecciona el tipo de ubicaciones</option>'; 
 
-    $('#activityForm').on('submit', function(e) {
-        e.preventDefault();
-        console.log($(this));
+                response.forEach(function(element) {                    
+                    var option = document.createElement('option');
+                    option.value = element.id;
+                    option.textContent = element.marca ? element.marca + " "+element.modelo : element.lugar;
+                    select.appendChild(option);
+                    console.log(select);
+                    
+                });
+    }
+        
+});
+$('#activityForm').on('submit', function(e) {
+    e.preventDefault();
+    console.log($(this));
 
-        $.ajax({
-            url: '/events', // La ruta al controlador 'store'
-            type: 'POST',
-            data: $(this).serialize(),
-            success: function(response) {
-                var successToast = new bootstrap.Toast(document.getElementById('successToast'));
-                successToast.show();
-                $('#activityModal').modal('hide');
-                setTimeout(function() {
-                    location.reload();
-                }, 2000);
-            },
-            error: function(xhr) {
-                var errorToast = new bootstrap.Toast(document.getElementById('errorToast'));
-                errorToast.show();
-                // console.log(xhr.responseText);
-                if (xhr.status === 400) {
-                    $('#errorToast .toast-body').text(xhr.responseJSON.error);
-                } else {
-                    $('#errorToast .toast-body').text('Ocurrió un error. Por favor, intenta de nuevo.');
-                }
-
-
+    $.ajax({
+        url: '/events', // La ruta al controlador 'store'
+        type: 'POST',
+        data: $(this).serialize(),
+        success: function(response) {
+            var successToast = new bootstrap.Toast(document.getElementById('successToast'));
+            successToast.show();
+            $('#activityModal').modal('hide');
+            setTimeout(function() {
+                location.reload();
+            }, 2000);
+        },
+        error: function(xhr) {
+            var errorToast = new bootstrap.Toast(document.getElementById('errorToast'));
+            errorToast.show();
+            // console.log(xhr.responseText);
+            if (xhr.status === 400) {
+                $('#errorToast .toast-body').text(xhr.responseJSON.error);
+            } else {
+                $('#errorToast .toast-body').text('Ocurrió un error. Por favor, intenta de nuevo.');
             }
-        });
+
+
+        }
     });
+});
 </script>

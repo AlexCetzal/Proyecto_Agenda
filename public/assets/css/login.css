@@ -62,9 +62,14 @@ label {
 .container-login {
     margin: 13vh;
 }
+.navbar {
+    display: flex;
+    flex-wrap: wrap;
+}
 .nav-color{
     background-color:  #f0f0f0;
+    width: 100%
 }
 .nav-derecha{
-    margin-left: 100%;
+    margin-left: 90%;
 }

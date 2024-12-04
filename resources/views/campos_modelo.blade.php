@@ -1,6 +1,5 @@
 @extends('layouts.app')
 
-
 @section('title', 'campos_Modelo')
 
 @section('content')

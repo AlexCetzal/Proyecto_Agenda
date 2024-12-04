@@ -4,22 +4,43 @@
 
 @section('content')
 
-<div id='calendar' class="calendario"></div>
-
 @include('components.activity-modal')
 
+<div id='calendar' class="calendario"></div>
+
 <script>
+    var calendarEl = document.getElementById('calendar');
     document.addEventListener('DOMContentLoaded', function() {
-        var calendarEl = document.getElementById('calendar');
-
-
-        var section = "{{ $section ?? '' }}";
 
         var calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'dayGridMonth',
             locale: 'es',
-            events: '/events/list?section=' + section,
-            displayEventTime: false,
+            events: function(fetchInfo, successCallback, failureCallback) {
+                console.log(section);
+                fetch('/events/list?section=' + section)
+                    .then(response => response.json())
+                    .then(events => {                         
+                        const expandedEvents = events.flatMap(event => {
+                            const startDate = new Date(event.start);
+                            const endDate = new Date(event.end || event.start);
+                            const expanded = [];
+
+                            while (startDate <= endDate) {
+                                expanded.push({
+                                    title: event.title,
+                                    start: new Date(startDate).toISOString().split('T')[0], 
+                                    allDay: true, 
+                                });
+                                startDate.setDate(startDate.getDate() + 1); 
+                            }
+
+                            return expanded;
+                        });
+
+                        successCallback(expandedEvents); 
+                    })
+                    .catch(error => failureCallback(error));
+            },
             dateClick: function(info) {
                 var date = new Date(info.dateStr + 'T00:00:00');
                 var day = String(date.getUTCDate()).padStart(2, '0');
@@ -28,11 +49,12 @@
 
                 var selectedDate = day + '-' + month + '-' + year;
                 document.getElementById('startDate').value = selectedDate;
+
+                // Configura la fecha mínima en el endDate
                 var endDatePicker = document.getElementById('endDate')._flatpickr;
                 if (endDatePicker) {
                     endDatePicker.set('minDate', selectedDate);
                 } else {
-                    // Inicializa flatpickr en #endDate si no existe
                     flatpickr("#endDate", {
                         dateFormat: "d-m-Y",
                         altInput: true,
@@ -40,13 +62,16 @@
                         minDate: selectedDate,
                     });
                 }
+
+                // Muestra el modal
                 var activityModal = new bootstrap.Modal(document.getElementById('activityModal'));
                 activityModal.show();
-            }
+            },
         });
 
         calendar.render();
     });
 </script>
+
 
 @endsection

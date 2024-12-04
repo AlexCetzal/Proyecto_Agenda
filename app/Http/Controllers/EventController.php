@@ -11,7 +11,7 @@ class EventController extends Controller
 {
     public function index()
     {
-        return view('actividades_Modelo'); // Ruta de la vista principal
+        return view('actividades_Modelo'); 
     }
 
     public function getEvents(Request $request)
@@ -26,9 +26,12 @@ class EventController extends Controller
         if ($section == 'actividades_modelo') {
             $section = 3;
         }
+        if ($section == 'transporte') { 
+            $section = 4; 
+        } 
 
         $events = Events::where('tipo_evento', $section)
-            ->select('id', 'title', 'description', 'start', 'startTime', 'end', 'endTime', 'vehiculos')
+            ->select('id', 'title', 'description', 'start', 'startTime', 'end', 'endTime', 'optiones')
             ->get();
         return response()->json($events);
     }
@@ -36,19 +39,21 @@ class EventController extends Controller
     public function store(Request $request)
     {
         try {
-            // Validación de los campos
             $validated = $request->validate([
                 'title' => 'required|string|max:255',
                 'start' => 'required|date',
                 'startTime' => 'required|date_format:H:i',
-                'end' => 'nullable|date',
+                'end' => 'nullable|date|after_or_equal:start',
                 'endTime' => 'nullable|date_format:H:i',
                 'description' => 'nullable|string',
-                'vehiculos' => 'required|in:Chevrolet_Malibu,Chevrolet_Suburban,Dodger_Ram,Ford_Expedition,GMC_Terrain,Toyota_Sienna',
+                'optiones' => 'required|string',
                 'section' => 'required|string',
             ]);
             $validated['start'] = (new DateTime($validated['start']))->format('Y-m-d');
-            $validated['end'] = (new DateTime($validated['start']))->format('Y-m-d');
+
+            $validated['end'] = $request->input('end')
+            ? (new DateTime($request->input('end')))->format('Y-m-d')
+            : $validated['start'];
 
             $validated['startTime'] = $validated['start'] . ' ' . $validated['startTime'];
             if ($validated['endTime']) {
@@ -58,6 +63,7 @@ class EventController extends Controller
             $existingEvent = Events::where('start', $validated['start'])
                 ->where('startTime', $validated['startTime'])
                 ->first();
+
             if ($existingEvent) {
                 return response()->json(['error' => 'Ya existe un evento en esta fecha y hora.'], 400);
             }
@@ -68,11 +74,12 @@ class EventController extends Controller
                 $validated['tipo_evento'] = 2;
             } elseif ($validated['section'] == 'actividades_modelo') {
                 $validated['tipo_evento'] = 3;
+            } elseif ($validated['section'] == 'transporte') {
+                $validated['tipo_evento'] = 4;
             } else {
                 return response()->json(['error' => 'Sección inválida.'], 400);
             }
 
-            // Crear el evento utilizando los datos validados
             $event = Events::create($validated);
             return response()->json(['success' => true, 'event' => $event], 200);
         } catch (\Exception $e) {
