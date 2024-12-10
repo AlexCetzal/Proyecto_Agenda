@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PermisosController;
 use App\Http\Controllers\VehiculoController;
 use App\Http\Controllers\UbicacionController;
+use App\Http\Controllers\UbicacionMontejoController;
 use App\Http\controllers\CampoController;
 use App\Http\Controllers\AnuncioController;
 
@@ -54,6 +55,11 @@ Route::resource('vehiculos', VehiculoController::class);
 //actividades
 Route::get('/actividades_Modelo/get', [VehiculoController::class, 'getSelect']);
 Route::resource('ubicacion', UbicacionController::class);
+
+//actividades montejo
+Route::get('/centro_cultural/get', [VehiculoController::class, 'getSelect']);
+Route::resource('ubicacion_montejo', UbicacionMontejoController::class);
+
 //campos
 Route::get('/campos_Modelo', [VehiculoController::class, 'getSelect'])->name('campos_Modelo');
 Route::resource('campos', CampoController::class);

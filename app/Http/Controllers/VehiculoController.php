@@ -6,6 +6,7 @@ use App\Models\Vehiculo;  // Asegúrate de importar el modelo
 use Illuminate\Http\Request;
 use App\Models\Campo;
 use App\Models\Ubicaciones;
+use App\Models\UbicacionesMontejos;
 
 class VehiculoController extends Controller
 {
@@ -21,12 +22,15 @@ public function getSelect(Request $request)
         if ($section == 'campos_modelo') {
             $data = Campo::all(); 
         }
-        if ($section == 'actividades_modelo' || $section == 'centro_cultural') {
+        if ($section == 'actividades_modelo') {
             $data = Ubicaciones::all();
         }
         if ($section == 'transporte') { 
             $data = Vehiculo::all();  
         } 
+        if ($section == 'centro_cultural') {
+            $data = UbicacionesMontejos::all();
+        }
 
         return response()->json($data);
 }

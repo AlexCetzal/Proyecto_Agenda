@@ -40,6 +40,17 @@
 
     <div class="col-md-2 mb-2">
         <div class="card h-100">
+            <a href="{{ route('ubicacion_montejo.index') }}" class="card-body d-flex flex-column align-items-center text-decoration-none per">
+            <div class="d-flex flex-column justify-content-center align-items-center" style="height: 100px;">
+                <i class="bi bi-geo-alt fs-1"></i>
+                <h5 class="card-title">Ubicacion Montejo</h5>
+            </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="col-md-2 mb-2">
+        <div class="card h-100">
             <a href="{{ route('campos.index') }}" class="card-body d-flex flex-column align-items-center text-decoration-none per">
             <div class="d-flex flex-column justify-content-center align-items-center" style="height: 100px;">
                 <i class="bi bi-tree fs-1"></i>
