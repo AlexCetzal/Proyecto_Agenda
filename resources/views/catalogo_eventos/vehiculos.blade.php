@@ -13,7 +13,7 @@
     <h1>Gestión de Vehículos</h1>
 
     <!-- Formulario para agregar vehículos -->
-    <form action="{{ route('vehiculos.store') }}" method="PO ST">
+    <form action="{{ route('vehiculos.store') }}" method="POST">
         @csrf
         <div class="row mb-3">
             <div class="col-md-3">
