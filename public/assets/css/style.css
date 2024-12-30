@@ -168,6 +168,20 @@
         text-align: center;
         margin-top: 5px;
     }
+    .regresar {
+        background-color: #00698f;
+        color: #ffffff;
+        padding: 10px 20px;
+        margin: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+    }
+    .regresar:hover{
+        background-color: #004d7a;
+    }
     
     
     @media (max-width: 768px) {
@@ -183,5 +197,7 @@
         nav ul li {
             margin: 10px 0;
         }
+
+    
     }
 }

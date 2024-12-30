@@ -4,10 +4,16 @@
 @section('content')
 
 <div class="container">
+    <br>
+    <div class="btnregresar">
+        <a href="configuracion" class="regresar"> regresar</a>
+    </div>
+    <br>
+
     <h1>Gestión de Vehículos</h1>
 
     <!-- Formulario para agregar vehículos -->
-    <form action="{{ route('vehiculos.store') }}" method="POST">
+    <form action="{{ route('vehiculos.store') }}" method="PO ST">
         @csrf
         <div class="row mb-3">
             <div class="col-md-3">

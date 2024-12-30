@@ -4,6 +4,13 @@
 
 @section('content')
 <div class="container">
+
+    <br>
+    <div class="btnregresar">
+        <a href="configuracion" class="regresar"> regresar</a>
+    </div>
+    <br>
+    
     <h1 class="mb-4">Gestión de Permisos</h1>
 
     <form method="POST" action="{{ route('permisos.store') }}">

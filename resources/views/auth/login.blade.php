@@ -62,7 +62,7 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="row mb-3 cdb justify-content-center">
+                        {{-- <div class="row mb-3 cdb justify-content-center">
                             <div class="col-md-4 text-center whitout-padding-left">
                                 @if (Route::has('register'))
                                 <ul style="list-style: none;" class="register-container whitout-padding-left">
@@ -71,8 +71,8 @@
                                     </li>
                                 </ul>
                                 @endif
-                            </div>
-                        </div>
+                            </div> 
+                        </div> --}}
                     </form>
                 </div>
             </div>
